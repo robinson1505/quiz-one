@@ -1,0 +1,117 @@
+<section>
+  <div class="container py-5 w-50">
+    <div class="card p-3 shadow-lg">
+      <div class="row p-3">
+        <div class="col-12 col-lg-12">
+          <form action="" class="" (ngSubmit)="addUser()">
+            <h1 class="py-3 text-center">Register Here</h1>
+
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Firstname</mat-label>
+                  <input
+                    matInput
+                    placeholder="firstname"
+                    [(ngModel)]="firstName"
+                    name="firstName"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Lastname</mat-label>
+                  <input
+                    matInput
+                    placeholder="Lastname"
+                    [(ngModel)]="lastName"
+                    name="lastName"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <p>
+              <mat-form-field appearance="fill">
+                <mat-label>password</mat-label>
+                <input
+                  matInput
+                  placeholder="***************"
+                  [(ngModel)]="password"
+                  name="password"
+                />
+              </mat-form-field>
+            </p>
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Gender</mat-label>
+                  <input
+                    matInput
+                    placeholder="gender"
+                    [(ngModel)]="gender"
+                    name="gender"
+                  />
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Birthdate</mat-label>
+                  <input
+                    type="date"
+                    matInput
+                    placeholder="birthdate"
+                    [(ngModel)]="birthDate"
+                    name="birthDate"
+                    birthDate
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+
+            <p>
+              <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <textarea
+                  matInput
+                  placeholder="100 Main St"
+                  [(ngModel)]="address"
+                  name="address"
+                >
+Enter your home address</textarea
+                >
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill">
+                <mat-label>email</mat-label>
+                <input
+                  matInput
+                  placeholder="email"
+                  [(ngModel)]="email"
+                  name="email"
+                />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="fill">
+                <mat-label>Mobile</mat-label>
+                <input
+                  type="tel"
+                  matInput
+                  placeholder="mobile"
+                  [(ngModel)]="mobile"
+                  name="mobile"
+                />
+              </mat-form-field>
+            </p>
+            <div class="text-center">
+              <button type="submit" class="btn btn-success w-50 p-2">
+                SUBMIT
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
