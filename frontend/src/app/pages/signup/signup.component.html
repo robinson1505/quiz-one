@@ -43,7 +43,24 @@
             </p>
             <div class="row">
               <div class="col-6">
-                <mat-form-field appearance="fill">
+                <div>
+                  <label id="example-radio-group-label">Gender</label>
+                </div>
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                  [(ngModel)]="gender"
+                  name="gender"
+                >
+                  <mat-radio-button
+                    class="example-radio-button"
+                    *ngFor="let gender of genders"
+                    [value]="gender"
+                  >
+                    {{ gender }}
+                  </mat-radio-button>
+                </mat-radio-group>
+                <!-- <mat-form-field appearance="fill">
                   <mat-label>Gender</mat-label>
                   <input
                     matInput
@@ -51,19 +68,23 @@
                     [(ngModel)]="gender"
                     name="gender"
                   />
-                </mat-form-field>
+                </mat-form-field> -->
               </div>
               <div class="col-6">
                 <mat-form-field appearance="fill">
                   <mat-label>Birthdate</mat-label>
                   <input
-                    type="date"
                     matInput
                     placeholder="birthdate"
                     [(ngModel)]="birthDate"
                     name="birthDate"
-                    birthDate
+                    [matDatepicker]="picker1"
                   />
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
                 </mat-form-field>
               </div>
             </div>
@@ -105,6 +126,7 @@ Enter your home address</textarea
               </mat-form-field>
             </p>
             <div class="text-center">
+              <p>Already have an account <a routerLink="/">Login here</a></p>
               <button type="submit" class="btn btn-success w-50 p-2">
                 SUBMIT
               </button>

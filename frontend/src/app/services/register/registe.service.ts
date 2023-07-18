@@ -1,24 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { ApolloError } from '@apollo/client/core';
-import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
 import { User } from '../../models/user.model';
-import Login from '../../mutations/addUser.mutation';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import AddUser from '../../mutations/addUser.mutation';
-// import { SnackbarService } from "../snackbar/snackBar.service";
+import { SnackbarService } from '../snackbar/snackbar.service';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegisterService {
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private router: Router,private snackbar:SnackbarService) {}
 
   addUser(
     firstName: string,
@@ -47,8 +39,8 @@ export class RegisterService {
 
       .subscribe((result) => {
         if (result) {
-          console.log('ADDED USER ', result.data?.registerUser);
-          // const user = result.data?.registerUser;
+          this.snackbar.showSnackBar("Now you can Login","close","success")
+          this.router.navigate(["/"]);
         }
       });
   }

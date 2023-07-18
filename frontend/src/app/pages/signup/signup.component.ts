@@ -15,6 +15,7 @@ export class SignupComponent {
   gender:string =""
   address: string = '';
   mobile: string = '';
+  genders: string[] = ['male', 'female',];
   constructor(private registerService: RegisterService) {}
   addUser() {
     this.registerService.addUser(

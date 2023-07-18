@@ -2,3 +2,31 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.error {
+    background-color: white !important;
+    box-shadow: 0.2px 0.2px 0.2px rgba(220, 53, 69, 0.5);
+    border-radius: 4px;
+  
+    div {
+      background: #dc3545 !important;
+    }
+  }
+  .warning {
+    background-color: transparent !important;
+    box-shadow: 0.2px 0.2px 0.2px #fff3cd;
+    border-radius: 4px;
+  
+    div {
+      background: #0dcaf0 !important;
+    }
+  }
+  .success {
+    background-color: transparent !important;
+    box-shadow: 0.2px 0.2px 0.2px #fff3cd;
+    border-radius: 4px;
+  
+    div {
+      background: #198754 !important;
+    }
+  }

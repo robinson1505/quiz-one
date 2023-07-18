@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import PROFILE from 'src/app/queries/profile.query';
 import GET_USERS from 'src/app/queries/users.query';
+import { AuthService } from 'src/app/services/authentication/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,7 @@ export class DashboardComponent {
   sideBarOpen = true;
   user: User | undefined;
   allUsers: User[] = [];
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo,private authService:AuthService) {}
   sideBarTogger() {
     console.log(this.sideBarOpen);
     this.sideBarOpen = !this.sideBarOpen;
@@ -47,5 +48,8 @@ export class DashboardComponent {
         })
       )
       .subscribe();
+  }
+  logout(){
+    this.authService.logout();
   }
 }

@@ -11,6 +11,7 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
+import { SnackbarService } from '../snackbar/snackbar.service';
 // import { SnackbarService } from "../snackbar/snackBar.service";
 
 @Injectable({
@@ -26,7 +27,11 @@ export class AuthService implements CanActivate {
     false
   );
 
-  constructor(private apollo: Apollo, private router: Router) {
+  constructor(
+    private apollo: Apollo,
+    private router: Router,
+    private snackbarService: SnackbarService
+  ) {
     if (localStorage.getItem('token')) this.isAuthenticated$.next(true);
     else this.isAuthenticated$.next(false);
   }
@@ -41,9 +46,15 @@ export class AuthService implements CanActivate {
     return this.isLoggedIn().pipe(
       map((loggedIn) => {
         if (loggedIn) {
+          this.snackbarService.showSnackBar(
+            'Login successfully!',
+            'OK',
+            'success'
+          );
           return true;
         } else {
           this.router.navigate(['/']);
+
           return false;
         }
       })
@@ -62,7 +73,10 @@ export class AuthService implements CanActivate {
           const token = result.data?.login;
           localStorage.setItem('token', JSON.stringify(token));
           this.isAuthenticated$.next(true);
+          
+
           window.location.href = '/dashboard';
+          
         }
       });
   }
@@ -73,7 +87,6 @@ export class AuthService implements CanActivate {
     window.location.href = '/';
   }
   isLoggedIn(): Observable<boolean> {
-    console.log('IS LOGIN', this.isAuthenticated$.hasError);
     if (this.isAuthenticated$.hasError === true) {
       this.logout();
     }

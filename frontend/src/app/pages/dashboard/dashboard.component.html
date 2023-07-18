@@ -5,16 +5,30 @@
     </div></mat-drawer
   >
   <mat-drawer-content>
-    <div class="">
+    <div class="row">
       <mat-toolbar>
+      <div class="col-3">
         <button
-          mat-icon-button
-          class="example-icon"
-          aria-label="Example icon-button with menu icon"
-          (click)="sideBarTogger()"
-        >
-          <mat-icon>menu</mat-icon>
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        (click)="sideBarTogger()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      </div>
+      <div class="col-9 text-end pe-5">
+        <button mat-button [matMenuTriggerFor]="menu" *ngIf="user">
+          MR.{{ user.last_name }}
+          <mat-icon>arrow_drop_down</mat-icon>
         </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            SignOut
+          </button>
+        </mat-menu>
+      </div>
       </mat-toolbar>
     </div>
 

@@ -6,6 +6,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MaterialModule } from '../material/material/material.module';
 import { FormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { NotifierComponent } from './notifier/notifier.component';
 
 const pageComponents = [
   LoginComponent,
@@ -14,8 +16,8 @@ const pageComponents = [
   DashboardComponent,
 ];
 @NgModule({
-  declarations: [pageComponents],
-  imports: [CommonModule,MaterialModule,FormsModule ],
+  declarations: [pageComponents, NotifierComponent],
+  imports: [CommonModule,MaterialModule,FormsModule,RouterModule ],
   exports: [pageComponents],
 })
 export class PagesModule {}
