@@ -1,11 +1,11 @@
-import User from "../models/index.js";
+import { User, Role } from "../models/index.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { GraphQLError } from "graphql";
 
 const userResolver = {
   Query: {
-    profile: async (parent,args,context,info) => {
+    profile: async (parent, args, context, info) => {
       console.log(context.user);
       console.log("context only", context.user.user.id);
       try {
@@ -25,11 +25,16 @@ const userResolver = {
     },
     getUsers: async () => {
       try {
-        const users = await User.findAll();
+        const users = await User.findAll({
+          include: {
+            model: Role,
+          },
+        });
+
         return users;
       } catch (error) {
-        console.error("Error fetching lecturers data: ", error);
-        throw new Error("Error fetching lecturers data");
+        console.error("Error fetching users data: ", error);
+        throw new Error("Error fetching users data");
       }
     },
   },
@@ -46,6 +51,7 @@ const userResolver = {
           birth_date: args.birth_date,
           address: args.address,
           mobile: args.mobile,
+          user_role: args.user_role,
         });
         return user;
       } catch (error) {
@@ -67,10 +73,10 @@ const userResolver = {
         }
         const token = jwt.sign(
           {
-            user: { id: user.id, username: user.email },
+            user: { id: user.id, username: user.email, role: user.user_role },
           },
           "MyPrivate",
-          { expiresIn: "1h" }
+          { expiresIn: "24h" }
         );
         console.log(token);
         return token;

@@ -13,7 +13,6 @@ export default (sequelize, DataTypes) => {
       },
       last_name: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
       },
       password: {
@@ -37,13 +36,11 @@ export default (sequelize, DataTypes) => {
       },
       address: {
         type: DataTypes.TEXT,
-        unique: true,
         allowNull: false,
       },
 
       mobile: {
         type: DataTypes.STRING,
-        unique: true,
         allowNull: false,
       },
     },

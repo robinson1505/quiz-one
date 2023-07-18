@@ -13,6 +13,7 @@ type User{
     birth_date:String!
     address:String!
     mobile:String!
+    role:Role
     }
     extend type Query{
         profile:User
@@ -27,7 +28,8 @@ extend type Mutation {
         gender:Gender!
         birth_date:String!
         address:String!
-        mobile:String!):User
+        mobile:String!
+        user_role:ID):User
         login(
             email :String!
             password:String!
