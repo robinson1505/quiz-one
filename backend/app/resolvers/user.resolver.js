@@ -16,6 +16,7 @@ const userResolver = {
         }
         const user = await User.findOne({
           where: { id },
+          include:{model:Role}
         });
         return user;
       } catch (error) {

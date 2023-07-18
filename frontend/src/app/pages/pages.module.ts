@@ -8,6 +8,8 @@ import { MaterialModule } from '../material/material/material.module';
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { NotifierComponent } from './notifier/notifier.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UpdateComponent } from './update/update.component';
 
 const pageComponents = [
   LoginComponent,
@@ -16,7 +18,7 @@ const pageComponents = [
   DashboardComponent,
 ];
 @NgModule({
-  declarations: [pageComponents, NotifierComponent],
+  declarations: [pageComponents, NotifierComponent, ProfileComponent, UserListComponent, UpdateComponent],
   imports: [CommonModule,MaterialModule,FormsModule,RouterModule ],
   exports: [pageComponents],
 })

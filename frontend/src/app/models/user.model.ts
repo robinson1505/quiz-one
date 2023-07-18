@@ -1,3 +1,5 @@
+import { Role } from "./role.model";
+
 enum Gender {
     'male',
     'female'
@@ -13,4 +15,5 @@ export interface User {
   email:string;
   address:string;
   mobile:string
+  role:Role
 }

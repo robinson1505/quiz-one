@@ -8,8 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const material = [
   MatFormFieldModule,
@@ -20,7 +23,11 @@ const material = [
   MatToolbarModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatRadioModule,MatMenuModule
+  MatRadioModule,
+  MatMenuModule,
+  MatListModule,
+  MatCardModule,
+  MatDialogModule
 ];
 
 @NgModule({

@@ -15,18 +15,18 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 export class DashboardComponent {
   sideBarOpen = true;
   user: User | undefined;
-  allUsers: User[] = [];
-  constructor(private apollo: Apollo,private authService:AuthService) {}
+
+  imageSource = '../../../../assets/image/logo.png';
+  constructor(private apollo: Apollo, private authService: AuthService) {}
   sideBarTogger() {
     console.log(this.sideBarOpen);
     this.sideBarOpen = !this.sideBarOpen;
   }
 
   ngOnInit(): void {
-    this.getLecturer();
-    this.getAllUsers()
+    this.getUser();
   }
-  getLecturer() {
+  getUser() {
     this.apollo
       .query<{ profile: User }>({ query: PROFILE })
       .subscribe(({ data, loading }) => {
@@ -38,18 +38,8 @@ export class DashboardComponent {
         }
       });
   }
-  getAllUsers() {
-    this.apollo
-      .watchQuery<{ getUsers: User[] }>({ query: GET_USERS })
-      .valueChanges.pipe(
-        map((result) => {
-          console.log("All Users", result.data.getUsers)
-          this.allUsers = result.data.getUsers;
-        })
-      )
-      .subscribe();
-  }
-  logout(){
+
+  logout() {
     this.authService.logout();
   }
 }

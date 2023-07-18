@@ -1,70 +1,60 @@
 <mat-drawer-container class="example-container">
   <mat-drawer mode="side" [opened]="sideBarOpen"
     ><div class="container text-center" *ngIf="user">
-      Login as Mr {{ user.last_name }}
+      <div class="">
+        <img src="{{ imageSource }}" alt="" class="img-fluid" />
+      </div>
+
+      <mat-divider></mat-divider>
+
+      <mat-nav-list>
+        <a
+          mat-list-item
+          routerLinkActive=""
+          list-item-active
+          routerLink="/dashboard"
+          class="text-start"
+          >Dashboard</a
+        >
+        <a
+          mat-list-item
+          routerLinkActive=""
+          list-item-active
+          routerLink="/dashboard/profile"
+          class="text-start"
+          >Profile</a
+        >
+      </mat-nav-list>
     </div></mat-drawer
   >
   <mat-drawer-content>
     <div class="row">
       <mat-toolbar>
-      <div class="col-3">
-        <button
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-        (click)="sideBarTogger()"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
-      </div>
-      <div class="col-9 text-end pe-5">
-        <button mat-button [matMenuTriggerFor]="menu" *ngIf="user">
-          MR.{{ user.last_name }}
-          <mat-icon>arrow_drop_down</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon>
-            SignOut
+        <div class="col-3">
+          <button
+            mat-icon-button
+            class="example-icon"
+            aria-label="Example icon-button with menu icon"
+            (click)="sideBarTogger()"
+          >
+            <mat-icon>menu</mat-icon>
           </button>
-        </mat-menu>
-      </div>
+        </div>
+        <div class="col-9 text-end pe-5">
+          <button mat-button [matMenuTriggerFor]="menu" *ngIf="user">
+            MR.{{ user.last_name }}
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              SignOut
+            </button>
+          </mat-menu>
+        </div>
       </mat-toolbar>
     </div>
-
-    <div class="container my-3">
-      <div class="container shadow p-3">
-        <div class="container">
-          <div class="row">
-            <div class="col-6">USER LIST</div>
-          </div>
-        </div>
-
-        <table class="table table-hover table-bordered">
-          <thead>
-            <tr class="text-capitalize">
-              <th scope="col">s/n</th>
-              <th scope="col">Firstname</th>
-              <th scope="col">Lastname</th>
-              <th scope="col">email</th>
-              <th scope="col">Birth Date</th>
-              <th scope="col">Address</th>
-              <th scope="col">Mobile No</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of allUsers; let sr = index" class="py-5">
-              <th scope="row text-center">{{ sr + 1 }}</th>
-              <td>{{ user.first_name }}</td>
-              <td>{{ user.last_name }}</td>
-              <td>{{ user.email }}</td>
-              <td>{{ user.birth_date }}</td>
-              <td>{{ user.address }}</td>
-              <td>{{ user.mobile }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <router-outlet></router-outlet>
+  
   </mat-drawer-content>
 </mat-drawer-container>

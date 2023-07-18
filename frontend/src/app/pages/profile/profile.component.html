@@ -1,1 +1,58 @@
-<p>profile works!</p>
+<div class="container">
+  <mat-card class="py-0" *ngIf="user">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-4 text-center bg-light">
+          <div>
+            <img src="{{ imageSource }}" alt="" class="img-fluid p-0" />
+          </div>
+          <h1 class="text-capitalize">
+            {{ user.first_name }} {{ user.last_name }}
+          </h1>
+          <p class="text-capitalize">{{ user.role.role_name }}</p>
+          <p>
+            <button
+              mat-icon-button
+              class="example-icon"
+              aria-label="Example icon-button with menu icon"
+              (click)="openUpdateDialog()"
+            >
+              <mat-icon>update</mat-icon>
+            </button>
+          </p>
+        </div>
+        <div class="col-8 p-3">
+          <h2 class="text-center text-uppercase">INFORMATION</h2>
+          <div class="row my-2">
+            <div class="col-6">
+              <h3 class="text-capitalize">Email</h3>
+              <p>{{ user.email }}</p>
+            </div>
+            <div class="col-6">
+              <h1>Phone</h1>
+              <p>{{ user.mobile }}</p>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="row my-2">
+            <div class="col-6">
+              <h3 class="text-capitalize">Birth Date</h3>
+              <p>{{ user.birth_date }}</p>
+            </div>
+            <div class="col-6">
+              <h1>Gender</h1>
+              <p class="text-capitalize">{{ user.gender }}</p>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="row my-2">
+            <div class="col-6">
+              <h1>Address</h1>
+              <p>{{ user.address }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

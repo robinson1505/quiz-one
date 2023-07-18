@@ -9,11 +9,11 @@ import {
 
 import { HttpLink } from "apollo-angular/http";
 import { HttpHeaders } from "@angular/common/http";
-import { AuthService } from "./services/authentication/auth.service";
+
 import { Router } from "@angular/router";
 
 
-const uri = "http://localhost:4001/quiz";
+const uri = "http://localhost:4000/quiz";
 
 // Create an instance of ApolloLink that handles errors
 

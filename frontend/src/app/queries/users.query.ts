@@ -9,7 +9,11 @@ const GET_USERS = gql`
         birth_date
         address
         mobile
+        role{
+          role_name
+        }
       }
+      
   }
 `;
 export default GET_USERS;
