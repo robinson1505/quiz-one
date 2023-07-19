@@ -6,6 +6,7 @@ import {
   ApolloLink,
   InMemoryCache,
 } from "@apollo/client/core";
+// import { WebSocketLink } from '@apollo/client/link/ws';
 
 import { HttpLink } from "apollo-angular/http";
 import { HttpHeaders } from "@angular/common/http";
@@ -14,6 +15,12 @@ import { Router } from "@angular/router";
 
 
 const uri = "http://localhost:4000/quiz";
+// const ws = new WebSocketLink({
+//   uri: 'ws://localhost:4000/quiz',
+//   options: {
+//     reconnect: true,
+//   },
+// });
 
 // Create an instance of ApolloLink that handles errors
 
@@ -35,7 +42,7 @@ export function createApollo(
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
       for (const error of graphQLErrors) {
-        console.log("GRAPHQL ERRORS", error.extensions["code"]);
+        console.log("GRAPHQL ERRORS", error);
         if (
           error.extensions["code"] === "UNAUTHENTICATED" ||
           error.extensions["code"] === "TOKEN_EXPIRED"
@@ -55,6 +62,7 @@ export function createApollo(
   const link = ApolloLink.from([
     authMiddleware,
     errorLink,
+   
     httpLink.create({ uri, withCredentials: true }),
   ]);
   return {

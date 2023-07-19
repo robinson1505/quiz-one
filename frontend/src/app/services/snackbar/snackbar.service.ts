@@ -14,7 +14,7 @@ export class SnackbarService {
     action?: string,
     messageType?: "error" | "success" |"warning"
   ) {
-    console.log("MESSAGE TYPE",messageType)
+ 
     this.snackBar.openFromComponent(NotifierComponent, {
       data: {
         message: message,

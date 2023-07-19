@@ -12,6 +12,8 @@ import {
   UrlTree,
 } from '@angular/router';
 import { SnackbarService } from '../snackbar/snackbar.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfimationDialogComponent } from 'src/app/pages/confimation-dialog/confimation-dialog.component';
 // import { SnackbarService } from "../snackbar/snackBar.service";
 
 @Injectable({
@@ -30,7 +32,8 @@ export class AuthService implements CanActivate {
   constructor(
     private apollo: Apollo,
     private router: Router,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private dialog: MatDialog
   ) {
     if (localStorage.getItem('token')) this.isAuthenticated$.next(true);
     else this.isAuthenticated$.next(false);
@@ -67,24 +70,45 @@ export class AuthService implements CanActivate {
         mutation: Login,
         variables: { email, password },
       })
+      .pipe(
+        catchError((error) => {
+          if (error.graphQLErrors) {
+            this.snackbarService.showSnackBar(
+              'Wrong Credential',
+              'close',
+              'error'
+            );
+          }
+          return of(null);
+        })
+      )
 
       .subscribe((result) => {
         if (result) {
           const token = result.data?.login;
           localStorage.setItem('token', JSON.stringify(token));
           this.isAuthenticated$.next(true);
-          
 
           window.location.href = '/dashboard';
-          
         }
       });
   }
+  private openLogoutConfirmationDialog(): Observable<boolean> {
+    const dialogRef = this.dialog.open(ConfimationDialogComponent, {
+      width: '350px',
+    });
+
+    return dialogRef.afterClosed();
+  }
 
   logout() {
-    localStorage.removeItem('token');
-    this.isAuthenticated$.next(false);
-    window.location.href = '/';
+    this.openLogoutConfirmationDialog().subscribe((confirmed) => {
+      if (confirmed) {
+        localStorage.removeItem('token');
+        this.isAuthenticated$.next(false);
+        window.location.href = '/';
+      }
+    });
   }
   isLoggedIn(): Observable<boolean> {
     if (this.isAuthenticated$.hasError === true) {

@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
     dialect: config.DIALECT
   }
 );
-// sequelize.sync({force: true });
+sequelize.sync({alter: true });
 // ? CHECK FOR CONNECTION
 sequelize
   .authenticate()
